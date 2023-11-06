@@ -60,8 +60,8 @@ class RADAR:
 
 DBC: Dict[str, Dict[str, str]] = defaultdict(lambda: dbc_dict("ford_lincoln_base_pt", RADAR.DELPHI_MRR))
 
-# F-150 / Mach-E radar is not yet supported
-DBC[CAR.F_150_MK14, CAR.F_150_LIGHTNING_MK1, CAR.MUSTANG_MACH_E_MK1] = dbc_dict("ford_lincoln_base_pt", None)
+# F-150 radar is not yet supported
+DBC[CAR.F_150_MK14, CAR.F_150_LIGHTNING_MK1] = dbc_dict("ford_lincoln_base_pt", None)
 
 
 class Footnote(Enum):
@@ -97,7 +97,7 @@ CAR_INFO: Dict[str, Union[CarInfo, List[CarInfo]]] = {
     FordCarInfo("Lincoln Aviator 2020-21", "Co-Pilot360 Plus"),
   ],
   CAR.F_150_MK14: FordCarInfo("Ford F-150 2023", "Co-Pilot360 Active 2.0"),
-  CAR.F_150_LIGHTNING_MK1: FordCarInfo("Ford F-150 Lightning 2022-2023", "Co-Pilot360 Active 2.0"),
+  CAR.F_150_LIGHTNING_MK1: FordCarInfo("Ford F-150 Lightning 2022-23", "Co-Pilot360 Active 2.0"),
   CAR.FOCUS_MK4: FordCarInfo("Ford Focus 2018", "Adaptive Cruise Control with Lane Centering", footnotes=[Footnote.FOCUS]),
   CAR.MAVERICK_MK1: [
     FordCarInfo("Ford Maverick 2022", "LARIAT Luxury"),
@@ -257,18 +257,23 @@ FW_VERSIONS = {
   CAR.MUSTANG_MACH_E_MK1: {
     (Ecu.eps, 0x730, None): [
       b'LJ9C-14D003-AM\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+      b'LJ9C-14D003-AK\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
     ],
     (Ecu.abs, 0x760, None): [
       b'LK9C-2D053-CK\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+      b'LK9C-2D053-CC\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
     ],
     (Ecu.fwdRadar, 0x764, None): [
       b'ML3T-14D049-AL\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+      b'ML3T-14D049-AK\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
     ],
     (Ecu.fwdCamera, 0x706, None): [
-      b'ML3T-14H102-ABS\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+      b'ML3T-14H102-ABS\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+      b'ML3T-14H102-ABP\x00\x00\x00\x00\x00\x00\x00\x00\x00',
     ],
     (Ecu.engine, 0x7E0, None): [
       b'MJ98-14C204-BBP\x00\x00\x00\x00\x00\x00\x00\x00\x00',
+      b'MJ98-14C204-AXD\x00\x00\x00\x00\x00\x00\x00\x00\x00',
     ],
   },
   CAR.FOCUS_MK4: {
